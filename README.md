@@ -11,7 +11,7 @@ Simple shell scripts allowing for displaying and conversion of X.509 certificate
 
 ## Requirements
 
-The scripts require Binarynights [Forklift 4.x](https://binarynights.com) file manager, openssl binary and GNU version of sed+awk which can be installed via brew:
+The scripts require Binarynights [Forklift 4.x](https://binarynights.com) file manager, openssl binary and GNU version of sed+awk which can be installed via [brew](https://brew.sh):
 
 ```
 brew install gnu-sed gawk
@@ -31,7 +31,7 @@ chmod a+x ssl_display_cert.sh  ssl_display_csr.sh ssl_display_pkey.sh ssl_conver
 
 Change sed and awk binary paths in every script in case they are different in your case.
 
-Then create a new Forklift tool for every script via Commands -> Manage Tools and select 'Show output' option.
+Then create a new Forklift tool for every script via 'Commands' -> 'Manage Tools' and select 'Show output' option.
 
 <p align="center">
    <img src="./assets/forklift_x509_tools_config.png" alt="forklift_x509_tools_config" width="70%"/>
