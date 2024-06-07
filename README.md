@@ -34,7 +34,7 @@ Change sed and awk binary paths in every script in case they are different in yo
 Then create a new Forklift tool for every script via Commands -> Manage Tools and select 'Show output' option.
 
 <p align="center">
-   <img src="./assets/forklift_x509_tools_config.png" alt="forklift_x509_tools_config" width="60%"/>
+   <img src="./assets/forklift_x509_tools_config.png" alt="forklift_x509_tools_config" width="70%"/>
 </p>
 
 Type the default password in case of encrypted files as Forklift does not allow to get input from the user (however if you use it as standalone script you can type it as command line argument or the script will ask for the password in case it is missing).
