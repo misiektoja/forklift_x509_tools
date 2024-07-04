@@ -17,10 +17,11 @@ filename=$(basename -- "$sfile")
 extension="${filename##*.}"
 extension=$(echo $extension|tr '[:lower:]' '[:upper:]')
 filename="${filename%.*}"
+is_pem=$(file -b $sfile|grep -i pem)
 
-if [ $extension = "PEM" ] || [ $extension = "CRT" ]; then
+if [[ ( $extension = "PEM" ) || ( $extension = "CRT" && -n $is_pem ) ]]; then
 	$sed -n '/-----BEGIN CERTIFICATE-----/{:start /-----END CERTIFICATE-----/!{N;b start};/.*/p}' "$sfile"|/usr/bin/openssl crl2pkcs7 -nocrl -certfile /dev/stdin|/usr/bin/openssl pkcs7 -print_certs -text -noout
-elif [ $extension = "DER" ]; then
+elif [[ ( $extension = "DER" ) || ( $extension = "CRT" && -z $is_pem ) ]]; then
     /usr/bin/openssl x509 -text -inform der -noout -in "$sfile"
 elif [ $extension = "CER" ]; then
     /usr/bin/openssl x509 -text -inform der -noout -in "$sfile"
