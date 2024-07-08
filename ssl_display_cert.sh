@@ -17,7 +17,7 @@ filename=$(basename -- "$sfile")
 extension="${filename##*.}"
 extension=$(echo $extension|tr '[:lower:]' '[:upper:]')
 filename="${filename%.*}"
-is_pem=$(file -b $sfile|grep -i pem)
+is_pem=$(file -b "$sfile"|grep -E -i "pem|ascii")
 
 if [[ ( $extension = "PEM" ) || ( $extension = "CRT" && -n $is_pem ) ]]; then
 	$sed -n '/-----BEGIN CERTIFICATE-----/{:start /-----END CERTIFICATE-----/!{N;b start};/.*/p}' "$sfile"|/usr/bin/openssl crl2pkcs7 -nocrl -certfile /dev/stdin|/usr/bin/openssl pkcs7 -print_certs -text -noout
