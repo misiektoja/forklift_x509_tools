@@ -22,7 +22,7 @@ if [ $mode != "rsa" ] && [ $mode != "ec" ]; then
     exit 1
 fi
 
-if [ $extension = "PEM" ]; then
+if [ $extension = "PEM" ] || [ $extension = "KEY" ]; then
 	/usr/bin/openssl $mode -text -in "$sfile" -passin pass:"$password"
 elif [ $extension = "DER" || [ $extension = "PRV"]; then
     /usr/bin/openssl $mode -text -inform der -in "$sfile" -passin pass:"$password"
